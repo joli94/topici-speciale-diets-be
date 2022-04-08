@@ -25,4 +25,14 @@ public class ProjectConfig {
     public DietMapper dietMapper() {
         return new DietMapperImpl();
     }
+
+    @Bean
+    public FoodCategoryMapper foodCategoryMapper() {
+        return  new FoodCategoryMapperImpl();
+    }
+
+    @Bean
+    public FoodMapper foodMapper() {
+        return new FoodMapperImpl();
+    }
 }
