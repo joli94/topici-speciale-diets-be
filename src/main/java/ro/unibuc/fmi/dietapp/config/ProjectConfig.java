@@ -57,6 +57,11 @@ public class ProjectConfig {
     }
 
     @Bean
+    public Optimum_caloriesMapper optimum_caloriesMapper() {
+        return new Optimum_caloriesMapperImpl();
+    }
+
+    @Bean
     public RegistrationMapper registrationMapper() { return  new RegistrationMapperImpl(); }
 
     @Bean
