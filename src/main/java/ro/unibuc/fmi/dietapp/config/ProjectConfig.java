@@ -52,6 +52,9 @@ public class ProjectConfig {
     public FoodCategoryMapper foodCategoryMapper() {return new FoodCategoryMapperImpl(); }
 
     @Bean
+    public RegistrationMapper registrationMapper() { return  new RegistrationMapperImpl(); }
+
+    @Bean
     public UserMapper userMapper() {
         return new UserMapperImpl();
     }
