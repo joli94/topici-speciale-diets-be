@@ -25,4 +25,9 @@ public class ProjectConfig {
     public DietMapper dietMapper() {
         return new DietMapperImpl();
     }
+
+    @Bean
+    public CountryMapper countryMapper() {
+        return new CountryMapperImpl();
+    }
 }
