@@ -6,11 +6,16 @@ import ro.unibuc.fmi.dietapp.mapper.*;
 
 @Configuration
 public class ProjectConfig {
+    @Bean
+    public CityMapper cityMapper() {
+        return new CityMapperImpl();
+    }
    
     @Bean
     public CountryMapper countryMapper() {
         return new CountryMapperImpl();
     }
+
   
     @Bean
     public DietGoalMapper diet_goalMapper() {
