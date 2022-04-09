@@ -58,4 +58,9 @@ public class ProjectConfig {
     public UserMapper userMapper() {
         return new UserMapperImpl();
     }
+
+    @Bean
+    public WeightMapper weightMapper() {
+        return new WeightMapperImpl();
+    }
 }
