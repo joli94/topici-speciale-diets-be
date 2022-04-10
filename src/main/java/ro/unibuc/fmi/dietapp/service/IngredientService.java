@@ -1,6 +1,7 @@
 package ro.unibuc.fmi.dietapp.service;
 
 import org.springframework.stereotype.Service;
+import ro.unibuc.fmi.dietapp.exception.EntityNotFoundException;
 import ro.unibuc.fmi.dietapp.model.Ingredient;
 import ro.unibuc.fmi.dietapp.repository.IngredientRepository;
 
@@ -18,5 +19,11 @@ public class IngredientService {
 
     public List<Ingredient> findAll() {
         return ingredientRepository.findAll();
+    }
+
+    public Ingredient findById(Long id){
+        return ingredientRepository.findById(id).orElseThrow(
+                ()-> new EntityNotFoundException("The ingredient  with this id doesn't exist in the database!")
+        );
     }
 }
