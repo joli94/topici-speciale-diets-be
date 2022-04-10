@@ -5,5 +5,5 @@ import ro.unibuc.fmi.dietapp.dto.IngredientDto;
 import ro.unibuc.fmi.dietapp.model.Ingredient;
 
 @Mapper
-public interface IngredientMapper extends EntityMapper<IngredientDto, Ingredient>{
+public interface IngredientMapper extends EntityMapper<IngredientDto, Ingredient> {
 }

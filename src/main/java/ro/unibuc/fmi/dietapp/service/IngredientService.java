@@ -23,18 +23,18 @@ public class IngredientService {
         return ingredientRepository.findAll();
     }
 
-    public List<Ingredient> findByFoodId(Long id){
+    public List<Ingredient> findByFoodId(Long id) {
         List<Ingredient> ingredientList = new ArrayList<>();
-        List<FoodIngredients> result =  foodIngredientsService.findByFoodId(id);
+        List<FoodIngredients> result = foodIngredientsService.findByFoodId(id);
 
         result.forEach((foodIngredients) -> ingredientList.add(findById(foodIngredients.getId())));
 
         return ingredientList;
     }
 
-    public Ingredient findById(Long id){
+    public Ingredient findById(Long id) {
         return ingredientRepository.findById(id).orElseThrow(
-                ()-> new EntityNotFoundException("The ingredient  with this id doesn't exist in the database!")
+                () -> new EntityNotFoundException("The ingredient  with this id doesn't exist in the database!")
         );
     }
 }

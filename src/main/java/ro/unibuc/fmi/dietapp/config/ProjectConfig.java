@@ -64,7 +64,9 @@ public class ProjectConfig {
     }
 
     @Bean
-    public IngredientMapper ingredientMapper() { return new IngredientMapperImpl(); }
+    public IngredientMapper ingredientMapper() {
+        return new IngredientMapperImpl();
+    }
 
     @Bean
     public Optimum_caloriesMapper optimum_caloriesMapper() {

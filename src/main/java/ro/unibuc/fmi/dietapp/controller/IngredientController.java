@@ -8,7 +8,6 @@ import ro.unibuc.fmi.dietapp.mapper.IngredientMapper;
 import ro.unibuc.fmi.dietapp.model.Ingredient;
 import ro.unibuc.fmi.dietapp.service.IngredientService;
 
-
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -24,19 +23,19 @@ public class IngredientController {
     }
 
     @GetMapping
-    public ResponseEntity<List<IngredientDto>> findAll(){
+    public ResponseEntity<List<IngredientDto>> findAll() {
         List<Ingredient> response = service.findAll();
         return new ResponseEntity<>(mapper.toDto(response), HttpStatus.OK);
     }
 
     @GetMapping("/food")
-    public ResponseEntity<List<IngredientDto>> findByFoodId(@RequestParam Long id){
+    public ResponseEntity<List<IngredientDto>> findByFoodId(@RequestParam Long id) {
         List<Ingredient> response = service.findByFoodId(id);
         return new ResponseEntity<>(mapper.toDto(response), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<IngredientDto> findById(@PathVariable Long id){
+    public ResponseEntity<IngredientDto> findById(@PathVariable Long id) {
         Ingredient response = service.findById(id);
         return new ResponseEntity<>(mapper.toDto(response), HttpStatus.OK);
     }
