@@ -29,6 +29,7 @@ public class RegistrationService {
                     .birth_date(registration.getBirth_date())
                     .gender(registration.getGender())
                     .city(cityService.findById(registration.getCity()))
+                    .isAdmin(false)
                     .build();
 
             User resultedUser = userService.create(registeredUser);
