@@ -12,6 +12,8 @@ import ro.unibuc.fmi.dietapp.repository.IngredientRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
@@ -55,5 +57,21 @@ public class IngredientServiceTest {
         assertEquals(expected.getCalories(), result.stream().findFirst().get().getCalories());
 
         verify(repository).findAll();
+    }
+
+    @Test
+    @DisplayName("Find an ingredient by id - happy flow")
+    public void test_findIngredientById_happyFlow() {
+        Long id = expected.getId();
+
+        when(repository.findById(id)).thenReturn(Optional.of(expected));
+
+        Ingredient result = service.findById(id);
+
+        assertEquals(expected.getId(), result.getId());
+        assertEquals(expected.getName(), result.getName());
+        assertEquals(expected.getCalories(), result.getCalories());
+
+        verify(repository).findById(id);
     }
 }
