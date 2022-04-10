@@ -13,6 +13,11 @@ public class ProjectConfig {
     }
 
     @Bean
+    public BillingMapper billingMapper() {
+        return new BillingMapperImpl();
+    }
+
+    @Bean
     public CityMapper cityMapper() {
         return new CityMapperImpl();
     }
@@ -59,6 +64,11 @@ public class ProjectConfig {
     @Bean
     public Optimum_caloriesMapper optimum_caloriesMapper() {
         return new Optimum_caloriesMapperImpl();
+    }
+
+    @Bean
+    public PaymentMapper paymentMapper() {
+        return new PaymentMapperImpl();
     }
 
     @Bean
