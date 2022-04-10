@@ -8,7 +8,7 @@ import ro.unibuc.fmi.dietapp.model.User;
 import ro.unibuc.fmi.dietapp.model.Weight;
 
 @Mapper(imports = {User.class})
-public abstract class WeightMapper implements EntityMapper<WeightDto, Weight>{
+public abstract class WeightMapper implements EntityMapper<WeightDto, Weight> {
     @Mappings({
             @Mapping(target = "userId", source = "user.id")
     })

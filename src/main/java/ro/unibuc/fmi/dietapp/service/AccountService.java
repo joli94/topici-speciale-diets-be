@@ -14,18 +14,18 @@ public class AccountService {
         this.accountRepository = accountRepository;
     }
 
-    public Account findById(Long id){
+    public Account findById(Long id) {
         return accountRepository.findById(id).orElseThrow(
-                ()-> new EntityNotFoundException("The account with this id doesn't exist in the database!")
+                () -> new EntityNotFoundException("The account with this id doesn't exist in the database!")
         );
     }
 
-    public Account create(Account account){
+    public Account create(Account account) {
         return accountRepository.save(account);
     }
 
-    public Account update(Account account){
-        if(accountRepository.existsById(account.getId())){
+    public Account update(Account account) {
+        if (accountRepository.existsById(account.getId())) {
             return accountRepository.save(account);
         } else {
             throw new EntityNotFoundException(String.format("There is no account with id=%s in the database!", account.getId().toString()));

@@ -7,6 +7,6 @@ import ro.unibuc.fmi.dietapp.model.Billing;
 import java.util.List;
 
 @Repository
-public interface BillingRepository extends JpaRepository <Billing, Long> {
+public interface BillingRepository extends JpaRepository<Billing, Long> {
     List<Billing> findByUserId(Long id);
 }

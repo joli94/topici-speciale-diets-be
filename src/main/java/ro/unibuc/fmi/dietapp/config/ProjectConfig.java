@@ -21,13 +21,13 @@ public class ProjectConfig {
     public CityMapper cityMapper() {
         return new CityMapperImpl();
     }
-   
+
     @Bean
     public CountryMapper countryMapper() {
         return new CountryMapperImpl();
     }
 
-  
+
     @Bean
     public DietGoalMapper diet_goalMapper() {
         return new DietGoalMapperImpl();
@@ -54,7 +54,9 @@ public class ProjectConfig {
     }
 
     @Bean
-    public FoodCategoryMapper foodCategoryMapper() {return new FoodCategoryMapperImpl(); }
+    public FoodCategoryMapper foodCategoryMapper() {
+        return new FoodCategoryMapperImpl();
+    }
 
     @Bean
     public HappinessMapper happinessMapper() {
@@ -72,7 +74,9 @@ public class ProjectConfig {
     }
 
     @Bean
-    public RegistrationMapper registrationMapper() { return  new RegistrationMapperImpl(); }
+    public RegistrationMapper registrationMapper() {
+        return new RegistrationMapperImpl();
+    }
 
     @Bean
     public UserMapper userMapper() {

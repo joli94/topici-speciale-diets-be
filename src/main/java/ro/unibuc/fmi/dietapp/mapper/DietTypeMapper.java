@@ -5,5 +5,5 @@ import ro.unibuc.fmi.dietapp.dto.DietTypeDto;
 import ro.unibuc.fmi.dietapp.model.DietType;
 
 @Mapper
-public interface DietTypeMapper extends EntityMapper<DietTypeDto, DietType>{
+public interface DietTypeMapper extends EntityMapper<DietTypeDto, DietType> {
 }

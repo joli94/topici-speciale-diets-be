@@ -15,17 +15,17 @@ public class CityService {
         this.cityRepository = cityRepository;
     }
 
-    public List<City> findAll(){
+    public List<City> findAll() {
         return cityRepository.findAll();
     }
 
-    public List<City> findByCountryId(Long id){
+    public List<City> findByCountryId(Long id) {
         return cityRepository.findByCountryId(id);
     }
 
-    public City findById(Long id){
+    public City findById(Long id) {
         return cityRepository.findById(id).orElseThrow(
-                ()-> new EntityNotFoundException("The city with this id doesn't exist in the database!")
+                () -> new EntityNotFoundException("The city with this id doesn't exist in the database!")
         );
     }
 }

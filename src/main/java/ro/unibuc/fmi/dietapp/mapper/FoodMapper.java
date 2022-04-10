@@ -9,7 +9,7 @@ import ro.unibuc.fmi.dietapp.model.FoodCategory;
 
 
 @Mapper(imports = {FoodCategory.class})
-public abstract class FoodMapper implements EntityMapper<FoodDto, Food>{
+public abstract class FoodMapper implements EntityMapper<FoodDto, Food> {
     @Mappings({
             @Mapping(target = "foodCategoryId", source = "foodCategory.id")
     })

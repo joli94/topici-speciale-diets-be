@@ -8,7 +8,6 @@ import ro.unibuc.fmi.dietapp.mapper.DietTypeMapper;
 import ro.unibuc.fmi.dietapp.model.DietType;
 import ro.unibuc.fmi.dietapp.service.DietTypeService;
 
-
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -24,7 +23,7 @@ public class DietTypeController {
     }
 
     @GetMapping
-    public ResponseEntity<List<DietTypeDto>> findAll(){
+    public ResponseEntity<List<DietTypeDto>> findAll() {
         List<DietType> response = service.findAll();
         return new ResponseEntity<>(mapper.toDto(response), HttpStatus.OK);
     }

@@ -23,13 +23,13 @@ public class CountryController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CountryDto>> findAll(){
+    public ResponseEntity<List<CountryDto>> findAll() {
         List<Country> result = service.findAll();
         return new ResponseEntity<>(mapper.toDto(result), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CountryDto> findById(@PathVariable Long id){
+    public ResponseEntity<CountryDto> findById(@PathVariable Long id) {
         Country result = service.findById(id);
         return new ResponseEntity<>(mapper.toDto(result), HttpStatus.OK);
     }

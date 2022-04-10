@@ -24,25 +24,25 @@ public class WeightController {
     }
 
     @GetMapping
-    public ResponseEntity<List<WeightDto>> findAll(){
+    public ResponseEntity<List<WeightDto>> findAll() {
         List<Weight> response = service.findAll();
         return new ResponseEntity<>(mapper.toDto(response), HttpStatus.OK);
     }
 
     @GetMapping("/user")
-    public ResponseEntity<List<WeightDto>> findByUserId(@RequestParam Long id){
+    public ResponseEntity<List<WeightDto>> findByUserId(@RequestParam Long id) {
         List<Weight> response = service.findByUserId(id);
         return new ResponseEntity<>(mapper.toDto(response), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<WeightDto> findById(@PathVariable Long id){
+    public ResponseEntity<WeightDto> findById(@PathVariable Long id) {
         Weight response = service.findById(id);
         return new ResponseEntity<>(mapper.toDto(response), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<WeightDto> create(@RequestBody WeightDto request){
+    public ResponseEntity<WeightDto> create(@RequestBody WeightDto request) {
         Weight response = service.create(mapper.toEntity(request));
         return new ResponseEntity<>(mapper.toDto(response), HttpStatus.CREATED);
     }

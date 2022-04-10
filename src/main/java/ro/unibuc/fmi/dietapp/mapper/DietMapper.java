@@ -9,7 +9,7 @@ import ro.unibuc.fmi.dietapp.model.DietGoal;
 import ro.unibuc.fmi.dietapp.model.DietType;
 
 @Mapper(imports = {DietGoal.class, DietType.class})
-public abstract class DietMapper implements EntityMapper<DietDto, Diet>{
+public abstract class DietMapper implements EntityMapper<DietDto, Diet> {
     @Mappings({
             @Mapping(target = "dietGoalId", source = "dietGoal.id"),
             @Mapping(target = "dietTypeId", source = "dietType.id")

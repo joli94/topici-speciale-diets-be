@@ -6,5 +6,5 @@ import ro.unibuc.fmi.dietapp.model.Account;
 
 
 @Mapper
-public interface AccountMapper extends EntityMapper<AccountDto, Account>{
+public interface AccountMapper extends EntityMapper<AccountDto, Account> {
 }

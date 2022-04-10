@@ -6,5 +6,5 @@ import ro.unibuc.fmi.dietapp.model.FoodCategory;
 
 
 @Mapper
-public interface FoodCategoryMapper extends EntityMapper<FoodCategoryDto, FoodCategory>{
+public interface FoodCategoryMapper extends EntityMapper<FoodCategoryDto, FoodCategory> {
 }

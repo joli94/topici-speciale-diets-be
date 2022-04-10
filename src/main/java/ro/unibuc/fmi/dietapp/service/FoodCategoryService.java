@@ -5,7 +5,6 @@ import ro.unibuc.fmi.dietapp.exception.EntityNotFoundException;
 import ro.unibuc.fmi.dietapp.model.FoodCategory;
 import ro.unibuc.fmi.dietapp.repository.FoodCategoryRepository;
 
-
 import java.util.List;
 
 @Service
@@ -16,13 +15,13 @@ public class FoodCategoryService {
         this.foodCategoryRepository = foodCategoryRepository;
     }
 
-    public List<FoodCategory> findAll(){
+    public List<FoodCategory> findAll() {
         return foodCategoryRepository.findAll();
     }
 
-    public FoodCategory findById(Long id){
+    public FoodCategory findById(Long id) {
         return foodCategoryRepository.findById(id).orElseThrow(
-                ()-> new EntityNotFoundException("The food category with this id doesn't exist in the database!")
+                () -> new EntityNotFoundException("The food category with this id doesn't exist in the database!")
         );
     }
 }

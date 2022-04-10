@@ -9,7 +9,6 @@ import ro.unibuc.fmi.dietapp.mapper.DietMapper;
 import ro.unibuc.fmi.dietapp.model.Diet;
 import ro.unibuc.fmi.dietapp.service.DietService;
 
-
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -26,25 +25,25 @@ public class DietController {
     }
 
     @GetMapping
-    public ResponseEntity<List<DietDto>> findAll(){
+    public ResponseEntity<List<DietDto>> findAll() {
         List<Diet> response = service.findAll();
         return new ResponseEntity<>(mapper.toDto(response), HttpStatus.OK);
     }
 
-   @GetMapping("/goal")
-    public ResponseEntity<List<DietDto>> findByGoal(@RequestParam Long id){
+    @GetMapping("/goal")
+    public ResponseEntity<List<DietDto>> findByGoal(@RequestParam Long id) {
         List<Diet> response = service.findByGoalId(id);
         return new ResponseEntity<>(mapper.toDto(response), HttpStatus.OK);
     }
 
     @GetMapping("/type")
-    public ResponseEntity<List<DietDto>> findByType(@RequestParam Long id){
+    public ResponseEntity<List<DietDto>> findByType(@RequestParam Long id) {
         List<Diet> response = service.findByTypeId(id);
         return new ResponseEntity<>(mapper.toDto(response), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DietDto> findById(@PathVariable Long id){
+    public ResponseEntity<DietDto> findById(@PathVariable Long id) {
         Diet response = service.findById(id);
         return new ResponseEntity<>(mapper.toDto(response), HttpStatus.OK);
     }

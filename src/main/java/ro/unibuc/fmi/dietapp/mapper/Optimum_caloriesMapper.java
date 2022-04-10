@@ -6,5 +6,5 @@ import ro.unibuc.fmi.dietapp.model.Optimum_calories;
 
 
 @Mapper
-public interface Optimum_caloriesMapper extends EntityMapper<Optimum_caloriesDto, Optimum_calories>{
+public interface Optimum_caloriesMapper extends EntityMapper<Optimum_caloriesDto, Optimum_calories> {
 }

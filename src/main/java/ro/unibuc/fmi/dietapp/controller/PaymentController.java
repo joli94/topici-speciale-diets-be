@@ -8,7 +8,6 @@ import ro.unibuc.fmi.dietapp.mapper.PaymentMapper;
 import ro.unibuc.fmi.dietapp.model.Payment;
 import ro.unibuc.fmi.dietapp.service.PaymentService;
 
-
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -24,19 +23,19 @@ public class PaymentController {
     }
 
     @GetMapping
-    public ResponseEntity<List<PaymentDto>> findAll(){
+    public ResponseEntity<List<PaymentDto>> findAll() {
         List<Payment> response = service.findAll();
         return new ResponseEntity<>(mapper.toDto(response), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PaymentDto> findById(@PathVariable Long id){
+    public ResponseEntity<PaymentDto> findById(@PathVariable Long id) {
         Payment response = service.findById(id);
         return new ResponseEntity<>(mapper.toDto(response), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<PaymentDto> create(@RequestBody PaymentDto request){
+    public ResponseEntity<PaymentDto> create(@RequestBody PaymentDto request) {
         Payment response = service.create(mapper.toEntity(request));
         return new ResponseEntity<>(mapper.toDto(response), HttpStatus.CREATED);
     }

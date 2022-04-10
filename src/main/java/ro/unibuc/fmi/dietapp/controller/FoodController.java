@@ -23,25 +23,25 @@ public class FoodController {
     }
 
     @GetMapping
-    public ResponseEntity<List<FoodDto>> findAll(){
+    public ResponseEntity<List<FoodDto>> findAll() {
         List<Food> response = service.findAll();
         return new ResponseEntity<>(mapper.toDto(response), HttpStatus.OK);
     }
 
     @GetMapping("/category")
-    public ResponseEntity<List<FoodDto>> findByCategory(@RequestParam Long id){
+    public ResponseEntity<List<FoodDto>> findByCategory(@RequestParam Long id) {
         List<Food> response = service.findByFoodCategory(id);
         return new ResponseEntity<>(mapper.toDto(response), HttpStatus.OK);
     }
 
     @GetMapping("/diet")
-    public ResponseEntity<List<FoodDto>> findByDiet(@RequestParam Long id){
+    public ResponseEntity<List<FoodDto>> findByDiet(@RequestParam Long id) {
         List<Food> response = service.findByDiet(id);
         return new ResponseEntity<>(mapper.toDto(response), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<FoodDto> findById(@PathVariable Long id){
+    public ResponseEntity<FoodDto> findById(@PathVariable Long id) {
         Food response = service.findById(id);
         return new ResponseEntity<>(mapper.toDto(response), HttpStatus.OK);
     }

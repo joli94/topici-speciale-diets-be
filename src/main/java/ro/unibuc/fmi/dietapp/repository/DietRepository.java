@@ -7,7 +7,8 @@ import ro.unibuc.fmi.dietapp.model.Diet;
 import java.util.List;
 
 @Repository
-public interface DietRepository extends JpaRepository <Diet, Long> {
+public interface DietRepository extends JpaRepository<Diet, Long> {
     List<Diet> findByDietGoalId(Long id);
+
     List<Diet> findByDietTypeId(Long id);
 }

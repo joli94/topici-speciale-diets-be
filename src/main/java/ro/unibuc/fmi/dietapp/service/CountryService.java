@@ -15,13 +15,13 @@ public class CountryService {
         this.countryRepository = countryRepository;
     }
 
-    public List<Country> findAll(){
+    public List<Country> findAll() {
         return countryRepository.findAll();
     }
 
-    public Country findById(Long id){
+    public Country findById(Long id) {
         return countryRepository.findById(id).orElseThrow(
-                ()-> new EntityNotFoundException("The country with this id doesn't exist in the database!")
+                () -> new EntityNotFoundException("The country with this id doesn't exist in the database!")
         );
     }
 }

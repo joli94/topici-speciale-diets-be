@@ -9,7 +9,7 @@ import ro.unibuc.fmi.dietapp.model.User;
 
 
 @Mapper(imports = {City.class})
-public abstract class UserMapper implements EntityMapper<UserDto, User>{
+public abstract class UserMapper implements EntityMapper<UserDto, User> {
     @Mappings({
             @Mapping(target = "cityId", source = "city.id")
     })

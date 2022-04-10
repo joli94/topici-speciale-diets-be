@@ -3,7 +3,6 @@ package ro.unibuc.fmi.dietapp.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -14,7 +13,7 @@ import java.time.LocalDateTime;
 public class HappinessDto {
     private Long id;
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime date;
 
     private Long value;

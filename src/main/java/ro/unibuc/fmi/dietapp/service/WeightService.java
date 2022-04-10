@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import ro.unibuc.fmi.dietapp.model.Weight;
 import ro.unibuc.fmi.dietapp.repository.WeightRepository;
 
-
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,28 +16,27 @@ public class WeightService {
         this.weightRepository = weightRepository;
     }
 
-    public List<Weight> findAll(){
+    public List<Weight> findAll() {
         return weightRepository.findAll();
     }
-    //TODO: de scos, daca nu-l folosim
 
-    public List<Weight> findByUserId(Long id){
+    public List<Weight> findByUserId(Long id) {
         return weightRepository.findByUserId(id);
     }
 
-    public Weight findById(Long id){
+    public Weight findById(Long id) {
         return weightRepository.findById(id).orElseThrow(
-                ()-> new EntityNotFoundException("The weight measurement with this id doesn't exist in the database!")
+                () -> new EntityNotFoundException("The weight measurement with this id doesn't exist in the database!")
         );
     }
 
-    public Weight create(Weight weight){
+    public Weight create(Weight weight) {
         weight.setDate(LocalDateTime.now());
         return weightRepository.save(weight);
     }
 
-    public Weight update(Weight weight){
-        if(weightRepository.existsById(weight.getId())){
+    public Weight update(Weight weight) {
+        if (weightRepository.existsById(weight.getId())) {
             weight.setDate(LocalDateTime.now());
             return weightRepository.save(weight);
         } else {

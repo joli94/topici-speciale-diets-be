@@ -21,7 +21,7 @@ public class RegistrationController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> create(@RequestBody RegistrationDto request){
+    public ResponseEntity<Void> create(@RequestBody RegistrationDto request) {
         service.create(mapper.toEntity(request));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

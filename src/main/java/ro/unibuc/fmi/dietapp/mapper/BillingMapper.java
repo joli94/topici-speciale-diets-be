@@ -7,7 +7,7 @@ import ro.unibuc.fmi.dietapp.dto.BillingDto;
 import ro.unibuc.fmi.dietapp.model.Billing;
 
 @Mapper(uses = {UserMapper.class, DietMapper.class, PaymentMapper.class})
-public interface  BillingMapper extends EntityMapper<BillingDto, Billing>{
+public interface BillingMapper extends EntityMapper<BillingDto, Billing> {
     @Mappings({
             @Mapping(target = "userDto", source = "user"),
             @Mapping(target = "dietDto", source = "diet"),

@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class Weight {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="WEIGHT_ID")
+    @Column(name = "WEIGHT_ID")
     private Long id;
 
     @Column(name = "WEIGHT_DATE")

@@ -5,5 +5,5 @@ import ro.unibuc.fmi.dietapp.dto.PaymentDto;
 import ro.unibuc.fmi.dietapp.model.Payment;
 
 @Mapper
-public interface PaymentMapper extends EntityMapper<PaymentDto, Payment>{
+public interface PaymentMapper extends EntityMapper<PaymentDto, Payment> {
 }

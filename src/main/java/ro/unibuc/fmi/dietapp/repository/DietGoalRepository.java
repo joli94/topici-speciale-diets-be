@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import ro.unibuc.fmi.dietapp.model.DietGoal;
 
 @Repository
-public interface DietGoalRepository extends JpaRepository <DietGoal, Long> {
+public interface DietGoalRepository extends JpaRepository<DietGoal, Long> {
 }

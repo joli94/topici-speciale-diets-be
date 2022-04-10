@@ -7,6 +7,6 @@ import ro.unibuc.fmi.dietapp.model.Happiness;
 import java.util.List;
 
 @Repository
-public interface HappinessRepository extends JpaRepository <Happiness, Long> {
+public interface HappinessRepository extends JpaRepository<Happiness, Long> {
     List<Happiness> findByUserId(Long id);
 }

@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class Happiness {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="HAPPINESS_ID")
+    @Column(name = "HAPPINESS_ID")
     private Long id;
 
     @Column(name = "HAPPINESS_DATE")

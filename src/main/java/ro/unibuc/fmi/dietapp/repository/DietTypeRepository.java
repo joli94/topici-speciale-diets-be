@@ -6,5 +6,5 @@ import ro.unibuc.fmi.dietapp.model.DietType;
 
 
 @Repository
-public interface DietTypeRepository extends JpaRepository <DietType, Long> {
+public interface DietTypeRepository extends JpaRepository<DietType, Long> {
 }

@@ -8,7 +8,7 @@ import ro.unibuc.fmi.dietapp.model.Happiness;
 import ro.unibuc.fmi.dietapp.model.User;
 
 @Mapper(imports = {User.class})
-public abstract class HappinessMapper implements EntityMapper<HappinessDto, Happiness>{
+public abstract class HappinessMapper implements EntityMapper<HappinessDto, Happiness> {
     @Mappings({
             @Mapping(target = "userId", source = "user.id")
     })

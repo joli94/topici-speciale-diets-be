@@ -24,25 +24,25 @@ public class HappinessController {
     }
 
     @GetMapping
-    public ResponseEntity<List<HappinessDto>> findAll(){
+    public ResponseEntity<List<HappinessDto>> findAll() {
         List<Happiness> response = service.findAll();
         return new ResponseEntity<>(mapper.toDto(response), HttpStatus.OK);
     }
 
     @GetMapping("/user")
-    public ResponseEntity<List<HappinessDto>> findByUserId(@RequestParam Long id){
+    public ResponseEntity<List<HappinessDto>> findByUserId(@RequestParam Long id) {
         List<Happiness> response = service.findByUserId(id);
         return new ResponseEntity<>(mapper.toDto(response), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<HappinessDto> findById(@PathVariable Long id){
+    public ResponseEntity<HappinessDto> findById(@PathVariable Long id) {
         Happiness response = service.findById(id);
         return new ResponseEntity<>(mapper.toDto(response), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<HappinessDto> create(@RequestBody HappinessDto request){
+    public ResponseEntity<HappinessDto> create(@RequestBody HappinessDto request) {
         Happiness response = service.create(mapper.toEntity(request));
         return new ResponseEntity<>(mapper.toDto(response), HttpStatus.CREATED);
     }

@@ -22,14 +22,14 @@ public class AccountController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AccountDto> findById(@PathVariable Long id){
+    public ResponseEntity<AccountDto> findById(@PathVariable Long id) {
         Account response = service.findById(id);
         return new ResponseEntity<>(mapper.toDto(response), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AccountDto> update(@PathVariable Long id, @RequestBody AccountDto request){
-        if(!id.equals(request.getId())){
+    public ResponseEntity<AccountDto> update(@PathVariable Long id, @RequestBody AccountDto request) {
+        if (!id.equals(request.getId())) {
             throw new BadRequestException("The path variable doesn't match the request body id!");
         }
 

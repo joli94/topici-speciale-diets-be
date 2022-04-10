@@ -9,7 +9,6 @@ import ro.unibuc.fmi.dietapp.mapper.UserMapper;
 import ro.unibuc.fmi.dietapp.model.User;
 import ro.unibuc.fmi.dietapp.service.UserService;
 
-
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -25,32 +24,32 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UserDto>> findAll(){
+    public ResponseEntity<List<UserDto>> findAll() {
         List<User> response = service.findAll();
         return new ResponseEntity<>(mapper.toDto(response), HttpStatus.OK);
     }
 
     @GetMapping("/city")
-    public ResponseEntity<List<UserDto>> findByCity(@RequestParam Long id){
+    public ResponseEntity<List<UserDto>> findByCity(@RequestParam Long id) {
         List<User> response = service.findByCityId(id);
         return new ResponseEntity<>(mapper.toDto(response), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserDto> findById(@PathVariable Long id){
+    public ResponseEntity<UserDto> findById(@PathVariable Long id) {
         User response = service.findById(id);
         return new ResponseEntity<>(mapper.toDto(response), HttpStatus.OK);
     }
 
     @GetMapping("/username")
-    public ResponseEntity<UserDto> findByEmail(@RequestParam String request){
+    public ResponseEntity<UserDto> findByEmail(@RequestParam String request) {
         User response = service.findByUsername(request);
         return new ResponseEntity<>(mapper.toDto(response), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDto> update(@PathVariable Long id, @RequestBody UserDto request){
-        if(!id.equals(request.getId())) {
+    public ResponseEntity<UserDto> update(@PathVariable Long id, @RequestBody UserDto request) {
+        if (!id.equals(request.getId())) {
             throw new BadRequestException("The path variable doesn't match the request body id!");
         }
 
@@ -59,8 +58,8 @@ public class UserController {
     }
 
     @PutMapping("/changeAdmin")
-    public ResponseEntity<Void> changeAdmin(@RequestParam Long id){
-       service.changeAdmin(id);
-       return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    public ResponseEntity<Void> changeAdmin(@RequestParam Long id) {
+        service.changeAdmin(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

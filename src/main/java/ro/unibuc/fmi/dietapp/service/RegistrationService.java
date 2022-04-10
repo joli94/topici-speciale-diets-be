@@ -19,8 +19,8 @@ public class RegistrationService {
 
     }
 
-    public void create(Registration registration){
-        if(! userService.existsByUsername(registration.getUsername())) {
+    public void create(Registration registration) {
+        if (!userService.existsByUsername(registration.getUsername())) {
 
             User registeredUser = User.builder()
                     .username(registration.getUsername())

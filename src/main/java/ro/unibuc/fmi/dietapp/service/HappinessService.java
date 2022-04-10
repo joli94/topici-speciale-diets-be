@@ -5,7 +5,6 @@ import ro.unibuc.fmi.dietapp.exception.EntityNotFoundException;
 import ro.unibuc.fmi.dietapp.model.Happiness;
 import ro.unibuc.fmi.dietapp.repository.HappinessRepository;
 
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -17,28 +16,27 @@ public class HappinessService {
         this.happinessRepository = happinessRepository;
     }
 
-    public List<Happiness> findAll(){
-        return  happinessRepository.findAll();
-    }
-    //TODO: de scos, daca nu-l folosim
-
-    public List<Happiness> findByUserId(Long id){
-        return  happinessRepository.findByUserId(id);
+    public List<Happiness> findAll() {
+        return happinessRepository.findAll();
     }
 
-    public Happiness findById(Long id){
+    public List<Happiness> findByUserId(Long id) {
+        return happinessRepository.findByUserId(id);
+    }
+
+    public Happiness findById(Long id) {
         return happinessRepository.findById(id).orElseThrow(
-                ()-> new EntityNotFoundException("The happiness measurement with this id doesn't exist in the database!")
+                () -> new EntityNotFoundException("The happiness measurement with this id doesn't exist in the database!")
         );
     }
 
-    public Happiness create(Happiness happiness){
+    public Happiness create(Happiness happiness) {
         happiness.setDate(LocalDateTime.now());
         return happinessRepository.save(happiness);
     }
 
-    public Happiness update(Happiness happiness){
-        if(happinessRepository.existsById(happiness.getId())){
+    public Happiness update(Happiness happiness) {
+        if (happinessRepository.existsById(happiness.getId())) {
             happiness.setDate(LocalDateTime.now());
             return happinessRepository.save(happiness);
         } else {

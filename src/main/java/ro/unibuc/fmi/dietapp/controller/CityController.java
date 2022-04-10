@@ -8,7 +8,6 @@ import ro.unibuc.fmi.dietapp.mapper.CityMapper;
 import ro.unibuc.fmi.dietapp.model.City;
 import ro.unibuc.fmi.dietapp.service.CityService;
 
-
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -24,19 +23,19 @@ public class CityController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CityDto>> findAll(){
+    public ResponseEntity<List<CityDto>> findAll() {
         List<City> response = service.findAll();
         return new ResponseEntity<>(mapper.toDto(response), HttpStatus.OK);
     }
 
     @GetMapping("/country")
-    public ResponseEntity<List<CityDto>> findByCountryId(@RequestParam Long id){
+    public ResponseEntity<List<CityDto>> findByCountryId(@RequestParam Long id) {
         List<City> response = service.findByCountryId(id);
         return new ResponseEntity<>(mapper.toDto(response), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CityDto> findById(@PathVariable Long id){
+    public ResponseEntity<CityDto> findById(@PathVariable Long id) {
         City response = service.findById(id);
         return new ResponseEntity<>(mapper.toDto(response), HttpStatus.OK);
     }

@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="ACCOUNT_ID")
+    @Column(name = "ACCOUNT_ID")
     private Long id;
 
     private String password;

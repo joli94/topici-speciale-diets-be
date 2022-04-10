@@ -14,7 +14,7 @@ public class FoodIngredientsService {
         this.foodIngredientsRepository = foodIngredientsRepository;
     }
 
-    public List<FoodIngredients> findByFoodId(Long id){
+    public List<FoodIngredients> findByFoodId(Long id) {
         return foodIngredientsRepository.findByFoodId(id);
     }
 }

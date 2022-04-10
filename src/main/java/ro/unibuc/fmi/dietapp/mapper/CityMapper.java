@@ -9,9 +9,9 @@ import ro.unibuc.fmi.dietapp.model.Country;
 
 
 @Mapper(imports = {Country.class})
-public abstract class CityMapper implements EntityMapper<CityDto, City>{
+public abstract class CityMapper implements EntityMapper<CityDto, City> {
     @Mappings({
-         @Mapping(target = "countryId", source = "country.id")
+            @Mapping(target = "countryId", source = "country.id")
     })
     public abstract CityDto toDto(City city);
 

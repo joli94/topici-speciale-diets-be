@@ -14,7 +14,7 @@ public class DietPlanService {
         this.repository = repository;
     }
 
-    public List<DietPlan> findByDiet(Long id){
+    public List<DietPlan> findByDiet(Long id) {
         return repository.findByDietId(id);
     }
 }
