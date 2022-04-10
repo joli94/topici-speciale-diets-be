@@ -9,6 +9,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ro.unibuc.fmi.dietapp.exception.EntityNotFoundException;
+import ro.unibuc.fmi.dietapp.model.FoodIngredients;
 import ro.unibuc.fmi.dietapp.model.Ingredient;
 import ro.unibuc.fmi.dietapp.repository.IngredientRepository;
 
@@ -19,8 +20,7 @@ import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class IngredientServiceTest {
@@ -80,7 +80,7 @@ public class IngredientServiceTest {
 
     @Test
     @DisplayName("Find an ingredient by id - id doesn't exist in the database")
-    public void test_findSupplierById_throwsEntityNotFoundException_whenSupplierNotFound() {
+    public void test_findIngredientById_throwsEntityNotFoundException_whenIngredientNotFound() {
         Long id = 2L;
 
         when(repository.findById(id)).thenThrow(new EntityNotFoundException("The ingredient with this id doesn't exist in the database!"));
@@ -89,8 +89,57 @@ public class IngredientServiceTest {
                 service.findById(id)
         );
 
-        assertThat(exception.getMessage()).isEqualTo("The supplier with this id doesn't exist in the database!");
+        assertThat(exception.getMessage()).isEqualTo("The ingredient with this id doesn't exist in the database!");
 
+        verify(repository).findById(id);
+    }
+
+    @Test
+    @DisplayName("Find all ingredients for a food by id - happy flow")
+    public void test_findIngredientForFoodById_happyFlow() {
+        Long id = 1L;
+
+        FoodIngredients foodIngredients = FoodIngredients.builder().id(id).build();
+        List<FoodIngredients> expectedList = new ArrayList<>();
+        expectedList.add(foodIngredients);
+
+        expected.setFoodIngredientsList(expectedList);
+
+        when(foodIngredientsService.findByFoodId(id)).thenReturn(expectedList);
+        when(repository.findById(id)).thenReturn(Optional.of(expected));
+
+        List<Ingredient> result = service.findByFoodId(id);
+
+        assertEquals(expectedList.size(), result.size());
+        assertEquals(expected.getId(), result.stream().findFirst().get().getId());
+        assertEquals(expected.getName(), result.stream().findFirst().get().getName());
+        assertEquals(expected.getCalories(), result.stream().findFirst().get().getCalories());
+
+        verify(repository).findById(any());
+        verify(foodIngredientsService).findByFoodId(id);
+    }
+
+    @Test
+    @DisplayName("Find all ingredients for a food by id - ingredient id doesn't exist in the database")
+    public void test_findIngredientForFoodById_throwsEntityNotFoundException_whenIngredientNotFound() {
+        Long id = 1L;
+
+        FoodIngredients foodIngredients = FoodIngredients.builder().id(id).build();
+        List<FoodIngredients> expectedList = new ArrayList<>();
+        expectedList.add(foodIngredients);
+
+        expected.setFoodIngredientsList(expectedList);
+
+        when(foodIngredientsService.findByFoodId(id)).thenReturn(expectedList);
+        when(repository.findById(id)).thenThrow(new EntityNotFoundException("The ingredient with this id doesn't exist in the database!"));
+
+        EntityNotFoundException exception = Assertions.assertThrows(EntityNotFoundException.class, () ->
+                service.findByFoodId(id)
+        );
+
+        assertThat(exception.getMessage()).isEqualTo("The ingredient with this id doesn't exist in the database!");
+
+        verify(foodIngredientsService).findByFoodId(id);
         verify(repository).findById(id);
     }
 }

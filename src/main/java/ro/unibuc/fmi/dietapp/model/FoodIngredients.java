@@ -1,5 +1,6 @@
 package ro.unibuc.fmi.dietapp.model;
 
+import lombok.Builder;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import javax.persistence.*;
 @Table(name = "FOOD_INGREDIENTS")
 
 @Getter
+@Builder
 public class FoodIngredients {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
