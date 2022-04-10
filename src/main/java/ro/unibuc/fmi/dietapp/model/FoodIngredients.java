@@ -1,7 +1,6 @@
 package ro.unibuc.fmi.dietapp.model;
 
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -9,6 +8,9 @@ import javax.persistence.*;
 @Table(name = "FOOD_INGREDIENTS")
 
 @Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class FoodIngredients {
     @Id
