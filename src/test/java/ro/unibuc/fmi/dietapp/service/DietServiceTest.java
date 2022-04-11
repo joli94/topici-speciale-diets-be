@@ -184,4 +184,18 @@ class DietServiceTest {
         verify(repository, times(0)).save(expected);
         verify(repository).existsById(id);
     }
+
+    @Test
+    @DisplayName("Delete a diet - happy flow")
+    public void test_deleteDiet_happyFlow() {
+        Long id = expected.getId();
+
+        when(repository.findById(id)).thenReturn(Optional.of(expected));
+        doNothing().when(repository).delete(expected);
+
+        service.delete(id);
+
+        verify(repository).findById(id);
+        verify(repository).delete(expected);
+    }
 }
