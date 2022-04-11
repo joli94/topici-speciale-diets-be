@@ -9,8 +9,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ro.unibuc.fmi.dietapp.exception.EntityNotFoundException;
-import ro.unibuc.fmi.dietapp.model.FoodCategory;
-import ro.unibuc.fmi.dietapp.repository.FoodCategoryRepository;
+import ro.unibuc.fmi.dietapp.model.DietType;
+import ro.unibuc.fmi.dietapp.repository.DietTypeRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,32 +23,34 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class FoodCategoryServiceTest {
+public class DietTypeServiceTest {
     @Mock
-    private FoodCategoryRepository repository;
+    private DietTypeRepository repository;
 
     @InjectMocks
-    private FoodCategoryService service;
+    private DietTypeService service;
 
-    private FoodCategory expected;
+    private DietType expected;
 
     @BeforeEach
     void setUp() {
-        expected = FoodCategory.builder()
+        expected = DietType.builder()
                 .id(1L)
-                .name("breakfast")
+                .name("proteica")
                 .build();
     }
 
     @Test
-    @DisplayName("Find all food categories - happy flow")
-    public void test_findAllFoodCategories_happyFlow() {
-        List<FoodCategory> expectedList = new ArrayList<>();
+    @DisplayName("Find all diet types - happy flow")
+    public void test_findAllDietTypes_happyFlow() {
+        Long id = expected.getId();
+
+        List<DietType> expectedList = new ArrayList<>();
         expectedList.add(expected);
 
         when(repository.findAll()).thenReturn(expectedList);
 
-        List<FoodCategory> result = service.findAll();
+        List<DietType> result = service.findAll();
 
         assertEquals(expectedList.size(), result.size());
         assertEquals(expected.getId(), result.stream().findFirst().get().getId());
@@ -58,13 +60,13 @@ class FoodCategoryServiceTest {
     }
 
     @Test
-    @DisplayName("Find a food category by id - happy flow")
-    public void test_findFoodCategoryById_happyFlow() {
+    @DisplayName("Find a diet type by id - happy flow")
+    public void test_findDietTypeById_happyFlow() {
         Long id = expected.getId();
 
         when(repository.findById(id)).thenReturn(Optional.of(expected));
 
-        FoodCategory result = service.findById(id);
+        DietType result = service.findById(id);
 
         assertEquals(expected.getId(), result.getId());
         assertEquals(expected.getName(), result.getName());
@@ -73,17 +75,17 @@ class FoodCategoryServiceTest {
     }
 
     @Test
-    @DisplayName("Find a food category by id - id doesn't exist in the database")
-    public void test_findFoodCategoryById_throwsEntityNotFoundException_whenFoodCategoryNotFound() {
+    @DisplayName("Find a diet type by id - id doesn't exist in the database")
+    public void test_findDietTypeById_throwsEntityNotFoundException_whenDietTypeNotFound() {
         Long id = new Random().nextLong();
 
-        when(repository.findById(id)).thenThrow(new EntityNotFoundException("The food category with this id doesn't exist in the database!"));
+        when(repository.findById(id)).thenThrow(new EntityNotFoundException("The type diet with this id doesn't exist in the database!"));
 
         EntityNotFoundException exception = Assertions.assertThrows(EntityNotFoundException.class, () ->
                 service.findById(id)
         );
 
-        assertThat(exception.getMessage()).isEqualTo("The food category with this id doesn't exist in the database!");
+        assertThat(exception.getMessage()).isEqualTo("The type diet with this id doesn't exist in the database!");
 
         verify(repository).findById(id);
     }
