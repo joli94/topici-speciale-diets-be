@@ -9,22 +9,25 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ro.unibuc.fmi.dietapp.exception.EntityNotFoundException;
-import ro.unibuc.fmi.dietapp.model.*;
+import ro.unibuc.fmi.dietapp.model.Account;
+import ro.unibuc.fmi.dietapp.model.City;
+import ro.unibuc.fmi.dietapp.model.Country;
+import ro.unibuc.fmi.dietapp.model.User;
 import ro.unibuc.fmi.dietapp.repository.UserRepository;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class UserServiceTest {
+public class UserServiceTest {
     @Mock
     private UserRepository repository;
 

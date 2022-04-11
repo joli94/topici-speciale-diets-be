@@ -11,7 +11,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import ro.unibuc.fmi.dietapp.exception.EntityNotFoundException;
 import ro.unibuc.fmi.dietapp.model.Happiness;
 import ro.unibuc.fmi.dietapp.model.User;
-import ro.unibuc.fmi.dietapp.model.Weight;
 import ro.unibuc.fmi.dietapp.repository.HappinessRepository;
 
 import java.time.LocalDateTime;
@@ -21,7 +20,7 @@ import java.util.Optional;
 import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)

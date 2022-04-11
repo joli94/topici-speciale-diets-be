@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class DietServiceTest {
+public class DietServiceTest {
     @Mock
     private DietRepository repository;
 

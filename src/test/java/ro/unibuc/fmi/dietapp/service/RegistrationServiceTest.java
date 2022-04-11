@@ -9,13 +9,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ro.unibuc.fmi.dietapp.exception.BadRequestException;
-import ro.unibuc.fmi.dietapp.exception.EntityNotFoundException;
 import ro.unibuc.fmi.dietapp.model.*;
 
 import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
