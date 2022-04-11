@@ -34,7 +34,7 @@ public class IngredientService {
 
     public Ingredient findById(Long id) {
         return ingredientRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("The ingredient  with this id doesn't exist in the database!")
+                () -> new EntityNotFoundException("The ingredient with this id doesn't exist in the database!")
         );
     }
 }
