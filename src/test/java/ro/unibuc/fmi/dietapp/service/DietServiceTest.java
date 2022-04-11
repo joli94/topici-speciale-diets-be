@@ -15,10 +15,7 @@ import ro.unibuc.fmi.dietapp.model.DietType;
 import ro.unibuc.fmi.dietapp.model.Ingredient;
 import ro.unibuc.fmi.dietapp.repository.DietRepository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -147,5 +144,28 @@ class DietServiceTest {
         assertThat(exception.getMessage()).isEqualTo("The diet with this id doesn't exist in the database!");
 
         verify(repository).findById(id);
+    }
+
+    @Test
+    @DisplayName("Update a diet - happy flow")
+    public void test_updateDiet_happyFlow() {
+        Diet diet = expected;
+        Long id = expected.getId();
+
+        when(repository.existsById(id)).thenReturn(true);
+        when(repository.save(expected)).thenReturn(expected);
+
+        Diet result = service.update(diet);
+
+        assertEquals(expected.getId(), result.getId());
+        assertEquals(expected.getName(), result.getName());
+        assertEquals(expected.getMaximumCalories(), result.getMaximumCalories());
+        assertEquals(expected.getPrice(), result.getPrice());
+        assertEquals(expected.getDietGoal(), result.getDietGoal());
+        assertEquals(expected.getDietType(), result.getDietType());
+
+
+        verify(repository).save(diet);
+        verify(repository).existsById(id);
     }
 }
