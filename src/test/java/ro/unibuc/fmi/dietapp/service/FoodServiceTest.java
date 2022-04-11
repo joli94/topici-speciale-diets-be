@@ -17,6 +17,7 @@ import ro.unibuc.fmi.dietapp.repository.FoodRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -82,5 +83,19 @@ class FoodServiceTest {
         verify(repository).findById(id);
     }
 
+    @Test
+    @DisplayName("Find a food by id - id doesn't exist in the database")
+    public void test_findFoodById_throwsEntityNotFoundException_whenFoodNotFound() {
+        Long id = new Random().nextLong();
 
+        when(repository.findById(id)).thenThrow(new EntityNotFoundException("The food with this id doesn't exist in the database!"));
+
+        EntityNotFoundException exception = Assertions.assertThrows(EntityNotFoundException.class, () ->
+                service.findById(id)
+        );
+
+        assertThat(exception.getMessage()).isEqualTo("The food with this id doesn't exist in the database!");
+
+        verify(repository).findById(id);
+    }
 }
