@@ -69,6 +69,29 @@ class DietServiceTest {
     }
 
     @Test
+    @DisplayName("Find all diets by goal id - happy flow")
+    public void test_findAllDietsByGoalId_happyFlow() {
+        Long id = expected.getDietGoal().getId();
+
+        List<Diet> expectedList = new ArrayList<>();
+        expectedList.add(expected);
+
+        when(repository.findByDietGoalId(id)).thenReturn(expectedList);
+
+        List<Diet> result = service.findByGoalId(id);
+
+        assertEquals(expectedList.size(), result.size());
+        assertEquals(expected.getId(), result.stream().findFirst().get().getId());
+        assertEquals(expected.getName(), result.stream().findFirst().get().getName());
+        assertEquals(expected.getMaximumCalories(), result.stream().findFirst().get().getMaximumCalories());
+        assertEquals(expected.getPrice(), result.stream().findFirst().get().getPrice());
+        assertEquals(expected.getDietGoal(), result.stream().findFirst().get().getDietGoal());
+        assertEquals(expected.getDietType(), result.stream().findFirst().get().getDietType());
+
+        verify(repository).findByDietGoalId(id);
+    }
+
+    @Test
     @DisplayName("Find a diet by id - happy flow")
     public void test_findDietById_happyFlow() {
         Long id = expected.getId();
