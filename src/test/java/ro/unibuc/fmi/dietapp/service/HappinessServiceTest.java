@@ -9,46 +9,50 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ro.unibuc.fmi.dietapp.exception.EntityNotFoundException;
+import ro.unibuc.fmi.dietapp.model.Happiness;
 import ro.unibuc.fmi.dietapp.model.User;
 import ro.unibuc.fmi.dietapp.model.Weight;
-import ro.unibuc.fmi.dietapp.repository.WeightRepository;
+import ro.unibuc.fmi.dietapp.repository.HappinessRepository;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class WeightServiceTest {
+public class HappinessServiceTest {
     @Mock
-    private WeightRepository repository;
+    private HappinessRepository repository;
 
     @InjectMocks
-    private WeightService service;
+    private HappinessService service;
 
-    private Weight expected;
+    private Happiness expected;
 
     @BeforeEach
     void setUp() {
-        expected = Weight.builder()
+        expected = Happiness.builder()
                 .id(1L)
                 .date(LocalDateTime.now())
-                .value(80D)
+                .value(80L)
                 .user(User.builder().id(1L).build())
                 .build();
     }
 
     @Test
-    @DisplayName("Find all weights - happy flow")
-    public void test_findAllWeights_happyFlow() {
-        List<Weight> expectedList = new ArrayList<>();
+    @DisplayName("Find all happiness - happy flow")
+    public void test_findAllHappinesss_happyFlow() {
+        List<Happiness> expectedList = new ArrayList<>();
         expectedList.add(expected);
 
         when(repository.findAll()).thenReturn(expectedList);
 
-        List<Weight> result = service.findAll();
+        List<Happiness> result = service.findAll();
 
         assertEquals(expectedList.size(), result.size());
         assertEquals(expected.getId(), result.stream().findFirst().get().getId());
@@ -60,16 +64,16 @@ public class WeightServiceTest {
     }
 
     @Test
-    @DisplayName("Find all weights by user id - happy flow")
-    public void test_findAllWeightsByUserId_happyFlow() {
+    @DisplayName("Find all happiness by user id - happy flow")
+    public void test_findAllHappinessByUserId_happyFlow() {
         Long id = expected.getUser().getId();
 
-        List<Weight> expectedList = new ArrayList<>();
+        List<Happiness> expectedList = new ArrayList<>();
         expectedList.add(expected);
 
         when(repository.findByUserId(id)).thenReturn(expectedList);
 
-        List<Weight> result = service.findByUserId(id);
+        List<Happiness> result = service.findByUserId(id);
 
         assertEquals(expectedList.size(), result.size());
         assertEquals(expected.getId(), result.stream().findFirst().get().getId());
@@ -81,13 +85,13 @@ public class WeightServiceTest {
     }
 
     @Test
-    @DisplayName("Find a weight by id - happy flow")
-    public void test_findWeightById_happyFlow() {
+    @DisplayName("Find a happiness by id - happy flow")
+    public void test_findHappinessById_happyFlow() {
         Long id = expected.getId();
 
         when(repository.findById(id)).thenReturn(Optional.of(expected));
 
-        Weight result = service.findById(id);
+        Happiness result = service.findById(id);
 
         assertEquals(expected.getId(), result.getId());
         assertEquals(expected.getDate(), result.getDate());
@@ -98,66 +102,66 @@ public class WeightServiceTest {
     }
 
     @Test
-    @DisplayName("Find a weight by id - id doesn't exist in the database")
-    public void test_findWeightById_throwsEntityNotFoundException_whenWeightNotFound() {
+    @DisplayName("Find a happiness by id - id doesn't exist in the database")
+    public void test_findHappinessById_throwsEntityNotFoundException_whenHappinessNotFound() {
         Long id = new Random().nextLong();
 
-        when(repository.findById(id)).thenThrow(new EntityNotFoundException("The weight measurement with this id doesn't exist in the database!"));
+        when(repository.findById(id)).thenThrow(new EntityNotFoundException("The happiness measurement with this id doesn't exist in the database!"));
 
         EntityNotFoundException exception = Assertions.assertThrows(EntityNotFoundException.class, () ->
                 service.findById(id)
         );
 
-        assertThat(exception.getMessage()).isEqualTo("The weight measurement with this id doesn't exist in the database!");
+        assertThat(exception.getMessage()).isEqualTo("The happiness measurement with this id doesn't exist in the database!");
 
         verify(repository).findById(id);
     }
 
     @Test
-    @DisplayName("Create a new weight - happy flow")
-    public void test_createWeight_happyFlow() {
-        Weight weight = Weight.builder()
+    @DisplayName("Create a new happiness - happy flow")
+    public void test_createHappiness_happyFlow() {
+        Happiness happiness = Happiness.builder()
                 .id(1L)
                 .date(LocalDateTime.now())
-                .value(80D)
+                .value(80L)
                 .user(User.builder().id(1L).build())
                 .build();
-        expected.setDate(weight.getDate());
+        expected.setDate(happiness.getDate());
 
-        when(repository.save(weight)).thenReturn(expected);
+        when(repository.save(happiness)).thenReturn(expected);
 
-        Weight result = service.create(weight);
+        Happiness result = service.create(happiness);
 
         assertEquals(expected.getId(), result.getId());
         assertEquals(expected.getDate(), result.getDate());
         assertEquals(expected.getValue(), result.getValue());
         assertEquals(expected.getUser(), result.getUser());
 
-        verify(repository).save(weight);
+        verify(repository).save(happiness);
     }
 
     @Test
-    @DisplayName("Update a weight - happy flow")
+    @DisplayName("Update a happiness - happy flow")
     public void test_updateWeight_happyFlow() {
-        Weight weight = expected;
+        Happiness happiness = expected;
         Long id = expected.getId();
 
         when(repository.existsById(id)).thenReturn(true);
-        when(repository.save(weight)).thenReturn(expected);
+        when(repository.save(happiness)).thenReturn(expected);
 
-        Weight result = service.update(weight);
+        Happiness result = service.update(happiness);
 
         assertEquals(expected.getId(), result.getId());
         assertEquals(expected.getDate(), result.getDate());
         assertEquals(expected.getValue(), result.getValue());
         assertEquals(expected.getUser(), result.getUser());
 
-        verify(repository).save(weight);
+        verify(repository).save(happiness);
         verify(repository).existsById(id);
     }
 
     @Test
-    @DisplayName("Update a weight - weight doesn't exist in the database")
+    @DisplayName("Update a happiness - happiness doesn't exist in the database")
     public void test_updateWeight_throwsEntityNotFoundException_whenWeightNotFound() {
         Long id = new Random().nextLong();
         expected.setId(id);
@@ -168,7 +172,7 @@ public class WeightServiceTest {
                 service.update(expected)
         );
 
-        assertThat(exception.getMessage()).isEqualTo(String.format("There is no weight measurement with id=%s in the database!", id));
+        assertThat(exception.getMessage()).isEqualTo(String.format("There is no happiness measurement with id=%s in the database!", id));
 
         verify(repository, times(0)).save(expected);
         verify(repository).existsById(id);
