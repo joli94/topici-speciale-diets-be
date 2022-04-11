@@ -1,10 +1,10 @@
 package ro.unibuc.fmi.dietapp.service;
 
 import org.springframework.stereotype.Service;
+import ro.unibuc.fmi.dietapp.exception.EntityNotFoundException;
 import ro.unibuc.fmi.dietapp.model.Weight;
 import ro.unibuc.fmi.dietapp.repository.WeightRepository;
 
-import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
 import java.util.List;
 

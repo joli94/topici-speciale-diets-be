@@ -16,6 +16,7 @@ import ro.unibuc.fmi.dietapp.repository.IngredientRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -80,7 +81,7 @@ public class IngredientServiceTest {
     @Test
     @DisplayName("Find an ingredient by id - id doesn't exist in the database")
     public void test_findIngredientById_throwsEntityNotFoundException_whenIngredientNotFound() {
-        Long id = 2L;
+        Long id = new Random().nextLong();
 
         when(repository.findById(id)).thenThrow(new EntityNotFoundException("The ingredient with this id doesn't exist in the database!"));
 
