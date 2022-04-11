@@ -13,6 +13,7 @@ import ro.unibuc.fmi.dietapp.repository.DietTypeRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
@@ -53,5 +54,20 @@ public class DietTypeServiceTest {
         assertEquals(expected.getName(), result.stream().findFirst().get().getName());
 
         verify(repository).findAll();
+    }
+
+    @Test
+    @DisplayName("Find a diet type by id - happy flow")
+    public void test_findDietTypeById_happyFlow() {
+        Long id = expected.getId();
+
+        when(repository.findById(id)).thenReturn(Optional.of(expected));
+
+        DietType result = service.findById(id);
+
+        assertEquals(expected.getId(), result.getId());
+        assertEquals(expected.getName(), result.getName());
+
+        verify(repository).findById(id);
     }
 }
