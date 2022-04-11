@@ -12,7 +12,6 @@ import ro.unibuc.fmi.dietapp.exception.EntityNotFoundException;
 import ro.unibuc.fmi.dietapp.model.DietPlan;
 import ro.unibuc.fmi.dietapp.model.Food;
 import ro.unibuc.fmi.dietapp.model.FoodCategory;
-import ro.unibuc.fmi.dietapp.model.Ingredient;
 import ro.unibuc.fmi.dietapp.repository.FoodRepository;
 
 import java.util.ArrayList;
@@ -21,8 +20,7 @@ import java.util.Optional;
 import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.endsWith;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 

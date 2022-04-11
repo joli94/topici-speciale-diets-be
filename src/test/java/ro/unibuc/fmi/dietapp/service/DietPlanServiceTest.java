@@ -10,13 +10,12 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import ro.unibuc.fmi.dietapp.model.Diet;
 import ro.unibuc.fmi.dietapp.model.DietPlan;
 import ro.unibuc.fmi.dietapp.model.Food;
-import ro.unibuc.fmi.dietapp.model.FoodIngredients;
 import ro.unibuc.fmi.dietapp.repository.DietPlanRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
