@@ -1,12 +1,16 @@
 package ro.unibuc.fmi.dietapp.model;
 
-import lombok.Getter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "DIET_PLAN")
 @Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class DietPlan {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
