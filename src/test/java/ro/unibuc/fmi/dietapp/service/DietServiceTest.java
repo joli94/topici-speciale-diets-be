@@ -12,15 +12,13 @@ import ro.unibuc.fmi.dietapp.exception.EntityNotFoundException;
 import ro.unibuc.fmi.dietapp.model.Diet;
 import ro.unibuc.fmi.dietapp.model.DietGoal;
 import ro.unibuc.fmi.dietapp.model.DietType;
-import ro.unibuc.fmi.dietapp.model.Ingredient;
 import ro.unibuc.fmi.dietapp.repository.DietRepository;
 
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class DietServiceTest {
@@ -166,6 +164,24 @@ class DietServiceTest {
 
 
         verify(repository).save(diet);
+        verify(repository).existsById(id);
+    }
+
+    @Test
+    @DisplayName("Update a diet - diet doesn't exist in the database")
+    public void test_updateDiet_throwsEntityNotFoundException_whenDietNotFound() {
+        Long id = new Random().nextLong();
+        expected.setId(id);
+
+        when(repository.existsById(id)).thenReturn(false);
+
+        EntityNotFoundException exception = Assertions.assertThrows(EntityNotFoundException.class, () ->
+                service.update(expected)
+        );
+
+        assertThat(exception.getMessage()).isEqualTo(String.format("There is no diet with id=%s in the database!", id));
+
+        verify(repository, times(0)).save(expected);
         verify(repository).existsById(id);
     }
 }
